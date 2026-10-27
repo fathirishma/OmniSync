@@ -1,0 +1,48 @@
+{
+  "name": "omnisync",
+  "version": "0.1.0",
+  "omnisyncRelease": "0.4b",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "dev": "next dev -p 47821",
+    "build": "next build",
+    "build:electron": "next build && node scripts/prepare-standalone.mjs && node scripts/generate-icons.mjs",
+    "start": "next start -p 47821",
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:watch": "vitest",
+    "electron": "electron .",
+    "electron:build": "npm run build:electron && electron-builder --config electron-builder.config.mjs",
+    "electron:pack": "npm run build:electron && electron-builder --dir --config electron-builder.config.mjs",
+    "electron:pack:mac-arm64": "npm run build:electron && electron-builder --mac dir --arm64 --config electron-builder.config.mjs",
+    "electron:pack:mac-x64": "npm run build:electron && electron-builder --mac dir --x64 --config electron-builder.config.mjs",
+    "electron:build:mac-arm64": "npm run build:electron && electron-builder --mac dmg --arm64 --config electron-builder.config.mjs",
+    "electron:build:mac-x64": "npm run build:electron && electron-builder --mac dmg --x64 --config electron-builder.config.mjs",
+    "electron:build:mac": "npm run electron:build:mac-arm64 && npm run electron:build:mac-x64"
+  },
+  "dependencies": {
+    "@tanstack/react-virtual": "^3.14.5",
+    "next": "16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^3.2.7",
+    "electron": "^42.5.1",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.10",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
+}
